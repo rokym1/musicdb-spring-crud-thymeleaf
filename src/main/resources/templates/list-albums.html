@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-	<title>Artists List</title>
+	<title>Albums List</title>
 </head>
 
 <body>
@@ -17,12 +17,12 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm">
-			<button type="button" class="btn btn-success btn-lg btn-block" disabled>ARTIST LIST</button>
+			<a th:href="@{/artists/list}" class="btn btn-primary btn-lg btn-block">
+				ARTIST LIST
+			</a>
 		</div>
 		<div class="col-sm">
-			<a th:href="@{/albums/list}" class="btn btn-primary btn-lg btn-block">
-				ALBUM LIST
-			</a>
+			<button type="button" class="btn btn-success btn-lg btn-block" disabled>ALBUM LIST</button>
 		</div>
 		<div class="col-sm">
 			<a th:href="@{/songs/list}" class="btn btn-primary btn-lg btn-block">
@@ -32,37 +32,32 @@
 	</div>
 	<hr>
 	
-	<a th:href="@{/artists/showFormForAddArtist}" class="btn btn-primary btn-sm mb-3">
-		Add Artist
+	<a th:href="@{/albums/showFormForAddAlbum}" class="btn btn-primary btn-sm mb-3">
+		Add Album
 	</a>
 	
 	<table class="table table-bordered table-striped">
 		<thead class="thead-dark">
 			<tr>
-				<th>Name</th>
-				<th>Details</th>
+				<th>Title</th>
+				<th>Artist</th>
 				<th>Action</th>
 			</tr>
 		</thead>
 		
 		<tbody>
-			<tr th:each="tempArtist : ${artists}">
+			<tr th:each="tempAlbum : ${albums}">
 			
-				<td th:text="${tempArtist.name}" />	
+				<td th:text="${tempAlbum.title}" />	
+				<td th:text="${tempAlbum.artist.name}" />
 				<td>
-					<a th:href="@{/artistDetails/showDetails(artistId=${tempArtist.id})}" 
-							class="btn btn-secondary btn-sm">
-					    Details
-					</a>
-				</td>
-				<td>
-					<a th:href="@{/artists/showFormForUpdateArtist(artistId=${tempArtist.id})}"
+					<a th:href="@{/albums/showFormForUpdateAlbum(albumId=${tempAlbum.id})}"
 						class="btn btn-info btn-sm">
 						Update
 					</a>
-					<a th:href="@{/artists/delete(artistId=${tempArtist.id})}"
+					<a th:href="@{/albums/delete(albumId=${tempAlbum.id})}"
 						class="btn btn-info btn-danger"
-						onclick="if (!(confirm('Are you sure you want to delete this artist?'))) return false">
+						onclick="if (!(confirm('Are you sure you want to delete this album?'))) return false">
 						Delete
 					</a>
 				</td>

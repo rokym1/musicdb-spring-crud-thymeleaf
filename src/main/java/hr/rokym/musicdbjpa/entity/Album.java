@@ -39,8 +39,10 @@ public class Album {
 	public Album() {
 	}
 
-	public Album(String title) {
+	public Album(String title, Artist artist) {
 		this.title = title;
+		this.artist = artist;
+
 	}
 
 

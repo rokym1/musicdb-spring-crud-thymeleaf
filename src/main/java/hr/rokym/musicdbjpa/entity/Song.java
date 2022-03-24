@@ -38,8 +38,10 @@ public class Song {
 	public Song() {
 	}
 
-	public Song(String title) {
+	public Song(String title, Artist artist, Album album) {
 		this.title = title;
+		this.artist = artist;
+		this.album = album;
 	}
 
 	public int getId() {
