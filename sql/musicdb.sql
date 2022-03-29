@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `music-db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `music-db`;
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
 -- Host: localhost    Database: music-db
@@ -31,7 +29,7 @@ CREATE TABLE `album` (
   PRIMARY KEY (`id`),
   KEY `FK_ARTIST_idx` (`artist_id`),
   CONSTRAINT `FK_ARTIST` FOREIGN KEY (`artist_id`) REFERENCES `artist` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +38,7 @@ CREATE TABLE `album` (
 
 LOCK TABLES `album` WRITE;
 /*!40000 ALTER TABLE `album` DISABLE KEYS */;
-INSERT INTO `album` VALUES (1,'Violator',1),(2,'Music For The Masses',1),(3,'Under a Blood Red Sky',2),(4,'The Man-Machine',3),(12,'Some Great Dance Songs',6),(13,'Non-Stop Erotic Cabaret',8),(14,'The Wedding Album',9);
+INSERT INTO `album` VALUES (1,'Violator',1),(2,'Music For The Masses',1),(3,'Under a Blood Red Sky',2),(4,'The Man-Machine',3),(12,'A Collection of Great Dance Songs',6),(13,'Non-Stop Erotic Cabaret',8),(14,'The Wedding Album',9),(28,'Eat to the Beat',5),(29,'New gold dream (81-82-83-84)',10),(30,'Upstairs at Eric\'s',7);
 /*!40000 ALTER TABLE `album` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +57,7 @@ CREATE TABLE `artist` (
   UNIQUE KEY `NAME_UNIQUE` (`name`),
   KEY `FK_DETAIL_idx` (`artist_detail_id`),
   CONSTRAINT `FK_DETAIL` FOREIGN KEY (`artist_detail_id`) REFERENCES `artist_detail` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +66,7 @@ CREATE TABLE `artist` (
 
 LOCK TABLES `artist` WRITE;
 /*!40000 ALTER TABLE `artist` DISABLE KEYS */;
-INSERT INTO `artist` VALUES (1,'Depeche Mode',1),(2,'U2',2),(3,'Kraftwerk',3),(5,'Blondie',4),(6,'Pink Floyd',5),(7,'Yazoo',6),(8,'Soft Cell',7),(9,'Duran Duran',8);
+INSERT INTO `artist` VALUES (1,'Depeche Mode',1),(2,'U2',2),(3,'Kraftwerk',3),(5,'Blondie',4),(6,'Pink Floyd',5),(7,'Yazoo',6),(8,'Soft Cell',7),(9,'Duran Duran',8),(10,'Simple Minds',9);
 /*!40000 ALTER TABLE `artist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +83,7 @@ CREATE TABLE `artist_detail` (
   `facebook` varchar(128) DEFAULT NULL,
   `instagram` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +92,7 @@ CREATE TABLE `artist_detail` (
 
 LOCK TABLES `artist_detail` WRITE;
 /*!40000 ALTER TABLE `artist_detail` DISABLE KEYS */;
-INSERT INTO `artist_detail` VALUES (1,'http://www.depechemode.com/','https://www.facebook.com/depechemode','https://www.instagram.com/depechemode/'),(2,'https://www.u2.com/','https://www.facebook.com/u2','https://instagram.com/u2'),(3,'https://kraftwerk.com/','https://www.facebook.com/Kraftwerk','https://www.instagram.com/kraftwerkofficial/'),(4,'https://www.blondie.net/','https://blondie.lnk.to/Facebookwe','https://blondie.lnk.to/Instawe'),(5,'https://www.pinkfloyd.com/','https://www.facebook.com/pinkfloyd/','https://www.instagram.com/PinkFloyd/'),(6,'https://yazooinfo.com/','https://www.facebook.com/AlisonMoyet/','https://twitter.com/Alisonmoyetnews'),(7,'https://www.softcell.co.uk/','https://www.facebook.com/softcellband','http://instagram.com/softcellhq'),(8,'https://duranduran.com/','http://www.facebook.com/duranduran','https://www.instagram.com/duranduran/?hl=en');
+INSERT INTO `artist_detail` VALUES (1,'http://www.depechemode.com/','https://www.facebook.com/depechemode','https://www.instagram.com/depechemode/'),(2,'https://www.u2.com/','https://www.facebook.com/u2','https://instagram.com/u2'),(3,'https://kraftwerk.com/','https://www.facebook.com/Kraftwerk','https://www.instagram.com/kraftwerkofficial/'),(4,'https://www.blondie.net/','https://blondie.lnk.to/Facebookwe','https://blondie.lnk.to/Instawe'),(5,'https://www.pinkfloyd.com/','https://www.facebook.com/pinkfloyd/','https://www.instagram.com/PinkFloyd/'),(6,'https://yazooinfo.com/','https://www.facebook.com/AlisonMoyet/','https://twitter.com/Alisonmoyetnews'),(7,'https://www.softcell.co.uk/','https://www.facebook.com/softcellband','http://instagram.com/softcellhq'),(8,'https://duranduran.com/','http://www.facebook.com/duranduran','https://www.instagram.com/duranduran/?hl=en'),(9,'https://www.simpleminds.com/','https://www.facebook.com/simpleminds','https://www.instagram.com/simplemindsmusic/');
 /*!40000 ALTER TABLE `artist_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,7 +165,7 @@ CREATE TABLE `song` (
   KEY `FK_ALBUM` (`album_id`),
   CONSTRAINT `FK_ALBUM` FOREIGN KEY (`album_id`) REFERENCES `album` (`id`),
   CONSTRAINT `FK_ARTIST_2` FOREIGN KEY (`artist_id`) REFERENCES `artist` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -176,7 +174,7 @@ CREATE TABLE `song` (
 
 LOCK TABLES `song` WRITE;
 /*!40000 ALTER TABLE `song` DISABLE KEYS */;
-INSERT INTO `song` VALUES (1,'The Model',3,4),(2,'Gloria',2,3),(3,'Sunday Bloody Sunday',2,3),(4,'Never Let Me Down Again',1,2),(5,'Behind the Wheel',1,2),(6,'World in My Eyes',1,1),(7,'Enjoy the Silence',1,1),(8,'Frustration',8,13),(9,'Tainted Love',8,13),(10,'Seedy Films',8,13),(11,'Youth',8,13),(12,'Sex Dwarf',8,13),(13,'Entertaine Me',8,13),(14,'Chips On My Shoulder',8,13),(15,'Bedsitter',8,13),(16,'Too Much Information',8,14),(17,'Ordinary World',8,14),(18,'Come Undone',8,14),(19,'Femme Fatale',8,14),(20,'Shelter',8,14),(21,'None of the Above',8,14),(22,'Sin of the City',8,14);
+INSERT INTO `song` VALUES (1,'The Model',3,4),(2,'Gloria',2,3),(3,'Sunday Bloody Sunday',2,3),(4,'Never Let Me Down Again',1,2),(5,'Behind the Wheel',1,2),(6,'World in My Eyes',1,1),(7,'Enjoy the Silence',1,1),(8,'Frustration',8,13),(9,'Tainted Love',8,13),(10,'Seedy Films',8,13),(11,'Youth',8,13),(12,'Sex Dwarf',8,13),(13,'Entertaine Me',8,13),(14,'Chips On My Shoulder',8,13),(15,'Bedsitter',8,13),(16,'Too Much Information',9,14),(17,'Ordinary World',9,14),(18,'Come Undone',9,14),(19,'Femme Fatale',9,14),(20,'Shelter',9,14),(21,'None of the Above',9,14),(22,'Sin of the City',9,14),(23,'Strangelove',1,2),(32,'Dreaming',5,28),(33,'The Hardest Part',5,28),(34,'Union City Blue',5,28),(35,'Shayla',5,28),(36,'Eat to the Beat',5,28),(37,'Atomic',5,28),(38,'Die Young Stay Pretty',5,28),(39,'Personal Jesus',1,1),(40,'Waiting for the Night',1,1),(41,'Policy of Truth',1,1),(42,'Clean',1,1),(43,'Sweetest Perfection',1,1),(44,'Halo',1,1),(45,'Little 15',1,2),(46,'I Want You Now',1,2),(47,'Nothing',1,2),(48,'The Things You Said',1,2),(49,'The Robots',3,4),(50,'Spacelab',3,4),(51,'Metropolis',3,4),(52,'The Model',3,4),(53,'Neon Lights',3,4),(54,'One of These Days',6,12),(55,'Money',6,12),(56,'Sheep',6,12),(57,'Shine On You Crazy Diamond',6,12),(58,'Wish You Were Here',6,12),(59,'Another Brick in the Wall',6,12),(60,'Someone Somewhere in Summertime',10,29),(61,'New Gold Dream (81-82-83-84)',10,29),(62,'Somebody Up There Likes You',10,29),(63,'Big Sleep',10,29),(64,'King Is White And In The Crowd',10,29),(65,'Hunter and the Hunted',10,29),(66,'Gloria',2,3),(67,'I Will Follow',2,3),(68,'Party Girl',2,3),(69,'New Year\'s Day',2,3),(70,'Don\'t Go',7,30),(71,'Too Pieces',7,30),(72,'Bad Connection',7,30),(73,'In My Room',7,30),(74,'Only You',7,30),(75,'Goodbye 70\'s',7,30),(76,'Winter Kills',7,30);
 /*!40000 ALTER TABLE `song` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -189,4 +187,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-19 19:49:59
+-- Dump completed on 2022-03-29 20:28:28
