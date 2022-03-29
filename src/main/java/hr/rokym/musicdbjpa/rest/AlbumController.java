@@ -102,8 +102,13 @@ public class AlbumController {
 	@GetMapping("/delete")
 	public String delete(@RequestParam("albumId") int id) {
 		
-		albumService.deleteById(id);
+		Album album = albumService.findById(id);
 		
+		if (album.getSongs().isEmpty()) {
+			
+			albumService.deleteById(id);
+		}
+			
 		return "redirect:/albums/list";
 	}
 	

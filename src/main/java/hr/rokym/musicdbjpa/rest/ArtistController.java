@@ -80,7 +80,12 @@ public class ArtistController {
 	@GetMapping("/delete")
 	public String delete(@RequestParam("artistId") int id) {
 		
-		artistService.deleteById(id);
+		Artist artist = artistService.findById(id);
+		
+		if (artist.getAlbums().isEmpty() && artist.getSongs().isEmpty()) {
+		
+			artistService.deleteById(id);
+		}
 		
 		return "redirect:/artists/list";
 	}
