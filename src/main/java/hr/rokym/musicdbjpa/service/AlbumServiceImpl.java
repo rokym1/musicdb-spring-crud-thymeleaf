@@ -21,7 +21,7 @@ public class AlbumServiceImpl implements AlbumService {
 	@Override
 	public List<Album> findAll() {
 		
-		return albumRepository.findAllByOrderByTitleAsc();
+		return albumRepository.findAllByOrderByArtistNameAscTitleAsc();
 		
 	}
 
@@ -54,6 +54,37 @@ public class AlbumServiceImpl implements AlbumService {
 		
 		albumRepository.deleteById(theId);
 	}
+
+	@Override
+	public List<Album> searchBy(String name) {
+		
+		List<Album> results = null;
+		
+		if (name != null && (name.trim().length() > 0)) {
+			
+			results = albumRepository.findByTitleContainsAllIgnoreCase(name);
+		}
+		else {
+			results = findAll();
+		}
+		
+		return results;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

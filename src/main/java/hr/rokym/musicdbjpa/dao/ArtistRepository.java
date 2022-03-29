@@ -9,5 +9,7 @@ import hr.rokym.musicdbjpa.entity.Artist;
 public interface ArtistRepository extends JpaRepository<Artist, Integer> {
 
 	public List<Artist> findAllByOrderByNameAsc();
+	
+	public List<Artist> findByNameContainsAllIgnoreCase(String name);
 }
 

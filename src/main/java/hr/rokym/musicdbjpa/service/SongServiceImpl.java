@@ -21,7 +21,7 @@ public class SongServiceImpl implements SongService {
 	@Override
 	public List<Song> findAll() {
 	
-		return songRepository.findAllByOrderByTitleAsc();
+		return songRepository.findAllByOrderByAlbumTitleAscTitleAsc();
 	}
 
 	@Override
@@ -51,6 +51,22 @@ public class SongServiceImpl implements SongService {
 	public void deleteById(int id) {
 		
 		songRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Song> searchBy(String name) {
+		
+		List<Song> results = null;
+		
+		if (name != null && (name.trim().length() >  0)) {
+			
+			results = songRepository.findByTitleContainsAllIgnoreCase(name);
+		}
+		else {
+			results = findAll();
+		}
+		
+		return results;
 	}
 }
 

@@ -13,5 +13,7 @@ public interface AlbumService {
 	public void save(Album album);
 	
 	public void deleteById(int theId);
+	
+	public List<Album> searchBy(String name);
 }
 

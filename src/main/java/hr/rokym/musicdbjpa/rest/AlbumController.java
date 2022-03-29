@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import hr.rokym.musicdbjpa.entity.Album;
 import hr.rokym.musicdbjpa.entity.Artist;
+import hr.rokym.musicdbjpa.entity.Song;
 import hr.rokym.musicdbjpa.service.AlbumService;
 import hr.rokym.musicdbjpa.service.ArtistService;
+import hr.rokym.musicdbjpa.service.SongService;
 
 @Controller
 @RequestMapping("/albums")
@@ -24,10 +26,13 @@ public class AlbumController {
 	
 	private ArtistService artistService;
 	
+	private SongService songService;
+	
 	@Autowired
-	public AlbumController(AlbumService albumService, ArtistService artistService) {
+	public AlbumController(AlbumService albumService, ArtistService artistService, SongService songService) {
 		this.albumService = albumService;
 		this.artistService = artistService;
+		this.songService = songService;
 	}
 	
 	@GetMapping("/list")
@@ -59,6 +64,20 @@ public class AlbumController {
 		
 		Artist tempArtist = artistService.findById(album.getArtist().getId());
 		
+		if (album.getId() != 0) {
+			
+			Album updatedAlbum = albumService.findById(album.getId());
+			
+			List<Song> songsList = updatedAlbum.getSongs();
+			
+			if (!songsList.isEmpty()) {
+				songsList.forEach(song -> {
+					Song tempSong = songService.findById(song.getId());
+					tempSong.setArtist(tempArtist);
+				});
+			}
+		}
+		
 		album.setArtist(tempArtist);
 		
 		albumService.save(album);
@@ -87,23 +106,27 @@ public class AlbumController {
 		
 		return "redirect:/albums/list";
 	}
+	
+	@GetMapping("/showSongList")
+	public String showSongList(@RequestParam("albumId") int id, Model model) {
+		
+		Album album = albumService.findById(id);
+		
+		model.addAttribute("songs", album.getSongs());
+		
+		return "list-songs";
+	}
+	
+	@GetMapping("/search")
+	public String searchAlbum(@RequestParam("albumTitle") String name, Model model) {
+		
+		List<Album> albums = albumService.searchBy(name);
+		
+		model.addAttribute("albums", albums);
+		
+		return "list-albums";
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

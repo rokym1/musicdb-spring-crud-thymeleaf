@@ -84,6 +84,16 @@ public class SongController {
 		
 		return "redirect:/songs/list";
 	}
+	
+	@GetMapping("/search")
+	public String searchSongs(@RequestParam("songTitle") String name, Model model) {
+		
+		List<Song> songs = songService.searchBy(name);
+		
+		model.addAttribute("songs", songs);
+		
+		return "list-songs";
+	}
  }
 
 

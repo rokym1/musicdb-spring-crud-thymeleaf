@@ -84,26 +84,37 @@ public class ArtistController {
 		
 		return "redirect:/artists/list";
 	}
+	
+	@GetMapping("/showAlbumList")
+	public String showAlbumList(@RequestParam("artistId") int id, Model model) {
+		
+		Artist artist = artistService.findById(id);
+		
+		model.addAttribute("albums", artist.getAlbums());
+		
+		return "list-albums";
+	}
+	
+	@GetMapping("/showSongList")
+	public String showSongList(@RequestParam("artistId") int id, Model model) {
+		
+		Artist artist = artistService.findById(id);
+		
+		model.addAttribute("songs", artist.getSongs());
+		
+		return "list-songs";
+	}
+	
+	@GetMapping("/search")
+	public String searchArtist(@RequestParam("artistName") String name, Model model) {
+		
+		List<Artist> artists = artistService.searchBy(name);
+		
+		model.addAttribute("artists", artists);
+		
+		return "list-artists";
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

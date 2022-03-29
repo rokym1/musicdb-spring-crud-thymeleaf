@@ -31,11 +31,13 @@
 		</div>
 	</div>
 	<hr>
-	
-	<a th:href="@{/artists/showFormForAddArtist}" class="btn btn-primary btn-sm mb-3">
-		Add Artist
-	</a>
-	
+	<form th:action="@{/artists/search}" class="form-inline">
+		<a th:href="@{/artists/showFormForAddArtist}" class="btn btn-primary btn-sm mb-3">
+			Add Artist
+		</a>
+		<input class="form-control ml-5 mr-sm-2 mb-3" type="search" name="artistName" placeholder="Search by name"/>
+		<button class="btn btn-success mb-3" type="submit">Search</button>
+	</form>
 	<table class="table table-bordered table-striped">
 		<thead class="thead-dark">
 			<tr>
@@ -53,6 +55,14 @@
 					<a th:href="@{/artistDetails/showDetails(artistId=${tempArtist.id})}" 
 							class="btn btn-secondary btn-sm">
 					    Details
+					</a>
+					<a th:href="@{/artists/showAlbumList(artistId=${tempArtist.id})}"
+						class="btn btn-primary btn-sm">
+						Albums
+					</a>
+					<a th:href="@{/artists/showSongList(artistId=${tempArtist.id})}"
+						class="btn btn-success btn-sm">
+						Songs
 					</a>
 				</td>
 				<td>

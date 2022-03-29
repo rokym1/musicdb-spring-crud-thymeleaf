@@ -13,6 +13,8 @@ public interface SongService {
 	public void save(Song song);
 	
 	public void deleteById(int id);
+	
+	public List<Song> searchBy(String name);
 }
 
 

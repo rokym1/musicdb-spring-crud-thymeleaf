@@ -52,6 +52,28 @@ public class ArtistServiceImpl implements ArtistService {
 		
 		artistRepository.deleteById(theId);
 	}
+
+	@Override
+	public List<Artist> searchBy(String name) {
+		
+		List<Artist> results = null;
+		
+		if (name != null && (name.trim().length() > 0)) {
+			
+			results = artistRepository.findByNameContainsAllIgnoreCase(name);
+		}
+		else {
+			results = findAll();
+		}
+		
+		return results;
+	}
 }
+
+
+
+
+
+
 
 

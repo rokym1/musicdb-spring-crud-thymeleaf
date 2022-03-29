@@ -31,17 +31,19 @@
 		</div>
 	</div>
 	<hr>
-	
-	<a th:href="@{/songs/showFormForAddSong}" class="btn btn-primary btn-sm mb-3">
-		Add Song
-	</a>
-	
+	 <form th:action="@{/songs/search}" class="form-inline">
+		<a th:href="@{/songs/showFormForAddSong}" class="btn btn-primary btn-sm mb-3">
+			Add Song
+		</a>
+		<input class="form-control ml-5 mr-sm-2 mb-3" type="search" name="songTitle" placeholder="Search by title"/>
+		<button class="btn btn-success mb-3" type="submit">Search</button>
+	</form>
 	<table class="table table-bordered table-striped">
 		<thead class="thead-dark">
 			<tr>
 				<th>Title</th>
-				<th>Artist</th>
 				<th>Album</th>
+				<th>Artist</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -50,8 +52,8 @@
 			<tr th:each="tempSong : ${songs}">
 			
 				<td th:text="${tempSong.title}" />	
-				<td th:text="${tempSong.artist.name}" />
 				<td th:text="${tempSong.album.title}" />
+				<td th:text="${tempSong.artist.name}" />
 				<td>
 					<a th:href="@{/songs/delete(songId=${tempSong.id})}"
 						class="btn btn-info btn-danger"
